@@ -17,6 +17,11 @@ const reducer = (state, action) => {
                 ...state,
                 contacts: [ ...state.contacts, action.payload]
             };
+        case 'EDIT_CONTACT':
+            return {
+                ...state,
+                contacts: [ ...state.contacts.filter(contact => contact.id !== action.payload.id), action.payload]
+            };
         default: 
             return state;
     }
@@ -25,11 +30,9 @@ const reducer = (state, action) => {
 export class Provider extends Component {
     //async fetch users from JsonPlaceholder
     async componentDidMount(){
-        axios.get('https://jsonplaceholder.typicode.com/users')
-            .then(res => {
-                console.log(res.data)
-                this.setState({contacts:res.data})}
-                )
+        //await the response before using its data
+        const res = await axios.get('https://jsonplaceholder.typicode.com/users')
+        this.setState({contacts: res.data})
     }
     //global state to be wrapped around app
     state = {
