@@ -1,7 +1,7 @@
 //React/Context imports
 import React, { Component } from "react";
 import { Provider } from "./context";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 //Custom component imports
 import Contacts from "./components/contacts/Contacts";
